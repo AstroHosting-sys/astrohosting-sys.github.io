@@ -1,11 +1,11 @@
 const config = {
     servers: [
         {
-            name: "Pines RP - Server 1",
-            ip: "158.180.47.93:25140" // Change this to your first FiveM server IP & port
+            name: "Server 1",
+            ip: "89.168.101.1:25130" // Change this to your first FiveM server IP & port
         },
         {
-            name: "Pines RP - Server 2",
+            name: "Server 2",
             ip: "158.180.47.93:25140" // Change this to your second FiveM server IP & port
         }
     ],
