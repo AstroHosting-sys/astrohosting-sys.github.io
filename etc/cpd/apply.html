@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Login</title>
+    <link rel="icon" href="https://discord.com/favicon.ico">
+    <script>
+        function redirectToDiscord() {
+            const authUrl = `https://discord.com/oauth2/authorize?client_id=YOUR_DISCORD_CLIENT_ID&redirect_uri=${encodeURIComponent('YOUR_REDIRECT_URI')}&response_type=code&scope=identify`;
+            window.location.href = authUrl;
+        }
+
+        function fetchUserData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            if (code) {
+                fetch('/get-access-token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const user = data.user;
+                    const webhookPayload = {
+                        username: 'New Login',
+                        embeds: [{
+                            title: `User Logged In: ${user.username}`,
+                            description: `**User ID:** ${user.id}\n**Username:** ${user.username}#${user.discriminator}`,
+                            color: 5814783
+                        }]
+                    };
+
+                    fetch('/send-webhook', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(webhookPayload)
+                    });
+
+                    // Optionally, redirect to a Google Form after submission
+                    window.location.href = "https://docs.google.com/forms/d/e/YOUR_FORM_URL_HERE/viewform";
+                })
+                .catch(error => {
+                    console.error('Error fetching user data:', error);
+                });
+            }
+        }
+
+        window.onload = function() {
+            if (window.location.search.includes('code')) {
+                fetchUserData();
+            }
+        };
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #7289DA;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .login-btn {
+            padding: 15px 30px;
+            background-color: #5865F2;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .login-btn:hover {
+            background-color: #4752C4;
+        }
+    </style>
+</head>
+<body>
+    <h1>Login with Discord</h1>
+    <button class="login-btn" onclick="redirectToDiscord()">Login with Discord</button>
+</body>
+</html>
