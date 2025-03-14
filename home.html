@@ -7,51 +7,66 @@
     <link rel="icon" type="image/png" href="https://i.imgur.com/7lKxN2D.png">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #1a1a40, #3a0ca3);
             color: #ffffff;
             text-align: center;
             padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
         .container {
-            max-width: 600px;
-            margin: auto;
-            background: #2a2a5a;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            background: rgba(42, 42, 90, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.15);
+            transition: transform 0.3s ease-in-out;
+        }
+        .container:hover {
+            transform: scale(1.02);
         }
         h1 {
-            color: #957DAD;
+            color: #D4A5FF;
+            font-size: 26px;
+            margin-bottom: 10px;
         }
         p {
-            font-size: 18px;
+            font-size: 16px;
+            line-height: 1.5;
+            opacity: 0.9;
         }
         .discord-link {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 12px;
             margin-top: 20px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background: #6A0DAD;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 18px;
             font-weight: bold;
-            transition: transform 0.3s ease, background 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
         .discord-link img {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
         }
         .discord-link:hover {
             background: #581890;
             transform: scale(1.1);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
         }
         .logo {
-            width: 150px;
-            margin-bottom: 20px;
+            width: 130px;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -63,7 +78,7 @@
            He specializes in Lua and JavaScript and has experience with PHP and HTML.</p>
         <p>Join his Discord to connect and collaborate!</p>
         <a href="https://discord.gg/Mn8JXvXtT2" class="discord-link" target="_blank">
-            <img src=https://i.imgur.com/GcLBZb1.png" alt="Discord Logo">Join Code3Astro on Discord
+            <img src="https://i.imgur.com/GcLBZb1.png" alt="Discord Logo">Join Code3Astro on Discord
         </a>
     </div>
 </body>
