@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: url('https://i.ibb.co/RGpQjKDn/wel.png') no-repeat center center fixed;
+            background: url('https://i.imgur.com/zWjWg1F.jpg') no-repeat center center fixed;
             background-size: cover;
             color: white;
             text-align: center;
@@ -101,7 +101,10 @@
                 document.getElementById(`status-${index}`).textContent = "Online";
                 document.getElementById(`status-${index}`).classList.add("status-online");
                 document.getElementById(`player-count-${index}`).textContent = `${data.Data.clients} / ${data.Data.sv_maxclients}`;
-                document.getElementById(`join-btn-${index}`).href = `fivem://connect/${server.ip}`;
+                
+                // Generate the CFX.re link for joining the server
+                const cfxJoinLink = `https://cfx.re/join/${server.identifier}`;
+                document.getElementById(`join-btn-${index}`).href = cfxJoinLink;
             } catch (error) {
                 document.getElementById(`status-${index}`).textContent = "Offline";
                 document.getElementById(`status-${index}`).classList.add("status-offline");
