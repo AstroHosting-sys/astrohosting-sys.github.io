@@ -1,1 +1,97 @@
-<meta http-equiv="refresh" content="3;url=https://astrohosting-sys.github.io/home.html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/7lKxN2D.png">
+    <script src="config.js"></script> <!-- Load config -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a40, #3a0ca3);
+            color: #ffffff;
+            text-align: center;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 500px;
+            background: rgba(42, 42, 90, 0.9);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.15);
+            transition: transform 0.3s ease-in-out, opacity 0.5s ease-in-out;
+        }
+        h1 {
+            color: #D4A5FF;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+        .loading {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .dots::after {
+            content: "";
+            display: inline-block;
+            animation: dots 1.5s steps(3, end) infinite;
+        }
+        @keyframes dots {
+            0% { content: "."; }
+            33% { content: ".."; }
+            66% { content: "..."; }
+            100% { content: ""; }
+        }
+        .fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            if (typeof config === "undefined") {
+                console.error("Config file not loaded!");
+                return;
+            }
+
+            let url = window.location.href;
+
+            if (url.includes("=")) {
+                let redirectValue = url.split("=")[1];
+                let finalURL = config.baseRedirectURL + redirectValue;
+
+                setTimeout(() => {
+                    document.querySelector(".container").classList.add("fade-out");
+                }, 2000); // Fade-out effect
+
+                setTimeout(() => {
+                    window.location.href = finalURL;
+                }, 3000); // Redirect after 3 seconds
+            } else {
+                setTimeout(() => {
+                    window.location.href = config.baseRedirectURL;
+                }, 3000);
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Redirecting</h1>
+        <p>Hang tight! You’re being sent to your destination.</p>
+        <p class="loading">Loading<span class="dots"></span></p>
+    </div>
+</body>
+</html>
